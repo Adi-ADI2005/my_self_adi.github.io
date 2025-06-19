@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AgroAI Chatbot in Monitor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #e0e0e0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .monitor {
+      width: 100vw;
+      height: 110vh;
+      background: url('static/images/chat.jpg');
+      border: 10px solid #000;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      position: relative;
+      margin-top: 20px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .stand-button, .base, .chat-ui {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .stand-button {
+      width: 8vw;
+      height: 4vh;
+      background: #000;
+      border: none;
+      position: absolute;
+      bottom: -4vh;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+    }
+    .stand-button:hover {
+      background: #333;
+    }
+
+    .base {
+      width: 20vw;
+      height: 2vh;
+      background: #111;
+      position: absolute;
+      bottom: -6vh;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 4px;
+    }
+
+    .chat-ui {
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #chatbox {
+      flex: 1;
+      border: 1px;
+      padding: 10px;
+      overflow-y: scroll;
+      background: rgb(0, 0, 0,0.1);
+      margin-bottom: 10px;
+    }
+
+    #message {
+      width: 70%;
+      padding: 10px;
+    }
+
+    #send, .home-btn {
+      padding: 10px 20px;
+      margin-left: 5px;
+    }
+
+    .bottom-controls {
+      display: flex;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .home-btn a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+<div class="monitor" id="monitor">
+  <div class="chat-ui" id="chat-ui">
+    <center><h2>🌾 AgroAI 🌾</h2></center>
+    <div id="chatbox">
+      <p>Hyyy 🤖! I’m honored to have you as my assistant today 😄.</p>
+    </div>
+
+    <div class="bottom-controls">
+      <input type="text" id="message" placeholder="Ask something..." required>
+      <button id="send">Send</button>
+      <button class="home-btn"><a href="{{ url_for('home_page') }}">Go to Home</a></button>
+    </div>
+  </div>
+
+  <button class="stand-button" id="stand-btn" onclick="standAction()"></button>
+  <div class="base" id="base"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Step 1: Show monitor
+    setTimeout(function() {
+      $("#monitor").css("opacity", "1");
+    }, 500);
+
+    // Step 2: Show stand and base
+    setTimeout(function() {
+      $("#stand-btn, #base").css("opacity", "1");
+    }, 1500);
+
+    // Step 3: Show chat UI
+    setTimeout(function() {
+      $("#chat-ui").css("opacity", "1");
+    }, 2500);
+  });
+
+  $("#send").click(function () {
+    var msg = $("#message").val();
+    if (msg.trim() !== "") {
+      $("#chatbox").append("<div><b>You:</b> " + msg + "</div>");
+      $.post("/ask", { message: msg }, function (data) {
+        $("#chatbox").append("<div><b>AgroAI:</b> " + data + "</div>");
+        $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+      });
+      $("#message").val('');
+    }
+  });
+
+  $("#message").keypress(function (e) {
+    if (e.which == 13) {
+      $("#send").click();
+    }
+  });
+
+  function standAction() {
+    alert('🖥️ You clicked the monitor stand!');
+  }
+</script>
+</body>
+</html>

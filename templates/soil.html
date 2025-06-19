@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmTech</title>
+    <style>
+        body {
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('static/images/soil.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    font-family: Arial, sans-serif;
+        }
+        .card__content {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 17px;
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            border: 1px solid rgb(0, 0, 0);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-row div {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            transform: scale(1.05);
+            border-color: #4caf50;
+        }
+
+        button {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 15px;
+            color: #e8e8e8;
+            background: #212121;
+            font-weight: bold;
+            font-size: 17px;
+            transition: all 250ms;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: #212121;
+            background: #e8e8e8;
+        }
+
+        .alert {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+   <!-- soil form-->
+<body>
+    <div class="card">
+        <div class="card__content">
+            <h1>🌱 Crop Recommendation System 🌱</h1>
+            <form action="/predict" method="POST">
+                <div class="form-row">
+                    <div>
+                        <label for="Nitrogen">Nitrogen</label>
+                        <input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" required>
+                    </div>
+                    <div>
+                        <label for="Phosphorus">Phosphorus</label>
+                        <input type="number" id="Phosphorus" name="Phosphorus" placeholder="Enter Phosphorus" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="Potassium">Potassium</label>
+                        <input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium" required>
+                    </div>
+                    <div>
+                        <label for="Temperature">Temperature</label>
+                        <input type="number" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="Humidity">Humidity</label>
+                        <input type="number" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" required>
+                    </div>
+                    <div>
+                        <label for="pH">pH</label>
+                        <input type="number" id="Ph" name="Ph" placeholder="Enter pH value" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="Rainfall">Rainfall</label>
+                        <input type="number" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" required>
+                    </div>
+                </div>
+
+                <button type="submit"><a href="{{ url_for('home_page') }}">GO TO HOME</a></button>
+                
+                <button type="submit"> Submit </button>
+            </form>
+            </div>
+        </div> 
+    </div>
+  </div>
+</body>
+</html>

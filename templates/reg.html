@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmTech</title>
+    <!-- register form css  -->
+    <style>
+        body {
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('static/images/reg.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    font-family: Arial, sans-serif;
+}
+       
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: rgb(0, 0, 0, 0);
+            box-shadow: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        .title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  color: #00bfff;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #00bfff;
+}
+
+        .message {
+            font-size: 14.5px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        .flex {
+            display: flex;
+            gap: 20px;
+            width: 90%;
+        }
+
+        .flex label {
+            flex: 1;
+        }
+
+        .form label {
+            position: relative;
+            display: block;
+        }
+
+        .form label .input {
+            background-color: #333;
+            color: #fff;
+            width: 90%;
+            padding: 15px 40px 5px 10px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.5);
+            border-radius: 10px;
+        }
+
+        .form label .input + span {
+            color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-size: 0.9em;
+            transition: 0.3s ease;
+        }
+
+        .form label .input:focus + span,
+        .form label .input:valid + span {
+            color: #00bfff;
+            top: 2px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+            font-size: 18px;
+        }
+
+        .eye-icon:hover {
+            color: #fff;
+        }
+
+        .submit {
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            background-color: #00bfff;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit:hover {
+            background-color: #008ecf;
+        }
+
+        .form .captcha {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+
+        .captcha-preview {
+            font-size: 24px;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+
+        .captcha-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .captcha-form input {
+            flex: 1;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .captcha-form input:hover {
+            background-color: #444;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .captcha-refresh {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .captcha-refresh:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+
+        .login-link {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<!-- register form html body -->
+<body>
+    <form class="form" action="/register" method="POST">    <!-- for connect to register function -->
+        <p class="title">Register</p>
+        <p class="message">Signup now and get full access to our app.</p>
+        <div class="flex">
+            <label>
+                <input class="input" type="text" name="fname" required />
+                <span>Firstname</span>
+            </label>
+            <label>
+                <input class="input" type="text" name="lname" required />
+                <span>Lastname</span>
+            </label>
+        </div>  
+
+        <label>
+            <input class="input" type="tel" name="mob" required />
+            <span>Mobile Number</span>
+        </label> 
+            
+        <label>
+            <input class="input" type="password" id="password" name="password" required />
+            <span>Password</span>
+            <span class="eye-icon" id="eye-password" onclick="togglePassword('password', 'eye-password')">👁️</span>
+        </label>
+
+        <label>
+            <input class="input" type="password" id="cpassword" required />
+            <span>Confirm Password</span>
+            <span class="eye-icon" id="eye-cpassword" onclick="togglePassword('cpassword', 'eye-cpassword')">👁️</span>
+        </label>
+
+        <div class="captcha">
+            <div class="captcha-preview" id="captcha-preview"></div>
+            <div class="captcha-form">
+                <input type="text" id="captcha-input" name="captcha-input" placeholder="Enter CAPTCHA" required />
+                <button type="button" class="captcha-refresh" onclick="generateCaptcha()">Refresh</button>
+            </div>
+            <input type="hidden" id="captcha-value" name="captcha-value" />
+        </div>
+
+        <button type="submit" class="submit">Submit</button>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="{{ url_for('user_login') }}">Login here</a></p>
+            <h1>{% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}</h1>
+        </div>
+    </form>
+<!-- js part -->
+    <script>
+       // function for show password and hide password
+        function togglePassword(inputId, eyeIconId) {
+            var passwordInput = document.getElementById(inputId);
+            var eyeIcon = document.getElementById(eyeIconId);
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.textContent = "🙈"; // Hide password
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.textContent = "👁️"; // Show password
+            }
+        }
+       // function for generating captcha 
+        function generateCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';// which element contion captcha
+            let captchaText = '';
+            for (let i = 0; i < 6; i++) {
+                captchaText += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('captcha-preview').textContent = captchaText;
+            document.getElementById('captcha-value').value = captchaText;
+        }
+
+        window.onload = generateCaptcha;
+    </script>
+</body>
+</html>

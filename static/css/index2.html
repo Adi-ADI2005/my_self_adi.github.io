@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Tech - Weather Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+       
+        .switch-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 160px;
+            height: 70px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1470d2;
+            transition: .4s;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        .slider:before {
+            position: absolute;
+            content: "Daily";
+            height: 55px;
+            width: 80px;
+            left: 5px;
+            bottom: 5px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50px;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(75px);
+            content: "Weekly";
+        }
+        .content {
+            display: none;
+            text-align: center;
+        }
+        .active {
+            display: block;
+        }
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container input, .form-container button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        .weather-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .forecast-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 10px;
+            justify-content: center;
+        }
+        .forecast-card {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .forecast-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .forecast-container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Form Section -->
+        <div class="form-container">
+            <form id="weatherForm" action="/weather" method="POST">
+                <input type="text" name="city" placeholder="Enter city" required>
+                <input type="hidden" id="weatherType" name="weatherType" value="daily">
+                <button type="submit">Get Weather</button>
+            </form>
+        </div>
+
+        <!-- Switch for Daily/Weekly -->
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="toggleWeather">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <!-- Daily Weather Section -->
+        <div id="dailyContent" class="content active">
+            <h2>Daily Weather</h2>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            {% if weather %}
+                <h2>Weather in {{ weather.city }}</h2>
+                <p>Temperature: {{ weather.temperature }}°C</p>
+                <p>Feels Like: {{ weather.feels_like }}°C</p>
+                <p>Max Temp: {{ weather.max_temp }}°C</p>
+                <p>Min Temp: {{ weather.min_temp }}°C</p>
+                <p>Humidity: {{ weather.humidity }}%</p>
+                <p>Cloudiness: {{ weather.cloudiness }}%</p>
+                <p>Description: {{ weather.description }}</p>
+                <p>Sunrise: {{ weather.sunrise }}</p>
+                <p>Sunset: {{ weather.sunset }}</p>
+                {% if hourly %}
+                    <div class="hourly-forecast">
+                        <h2>Hourly Forecast</h2>
+                        {% for forecast in hourly %}
+                            <div>
+                                <p><strong>{{ forecast.datetime }}</strong></p>
+                                <p>Temp: {{ forecast.temperature }}°C | Humidity: {{ forecast.humidity }}%</p>
+                                <p>Cloudiness: {{ forecast.cloudiness }}% | {{ forecast.description }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <!-- Weekly Weather Section -->
+        <div id="weeklyContent" class="content">
+            {% if daily %}
+                <div class="forecast">
+                    <h2>Weekly Forecast</h2>
+                    {% for date, forecasts in daily.items() %}
+                        <div class="forecast-day">
+                            <h3>{{ date }}</h3>
+                            <div class="forecast-items">
+                                {% for forecast in forecasts %}
+                                    <div class="forecast-item">
+                                        <p><strong>{{ forecast.time }}</strong></p>
+                                        <p>Temp: {{ forecast.temperature }}°C</p>
+                                        <p>Humidity: {{ forecast.humidity }}%</p>
+                                        <p>Cloudiness: {{ forecast.cloudiness }}%</p>
+                                        <p>Description: {{ forecast.description }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- JavaScript to Handle Toggle -->
+    <script>
+        document.getElementById("toggleWeather").addEventListener("change", function() {
+            let dailySection = document.getElementById("dailyContent");
+            let weeklySection = document.getElementById("weeklyContent");
+            let weatherTypeInput = document.getElementById("weatherType");
+
+            if (this.checked) {
+                dailySection.classList.remove("active");
+                weeklySection.classList.add("active");
+                weatherTypeInput.value = "weekly";
+            } else {
+                weeklySection.classList.remove("active");
+                dailySection.classList.add("active");
+                weatherTypeInput.value = "daily";
+            }
+        });
+    </script>
+</body>
+</html>

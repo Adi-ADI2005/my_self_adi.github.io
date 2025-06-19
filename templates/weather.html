@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Tech - Weather Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+       
+        .switch-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 160px;
+            height: 70px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1470d2;
+            transition: .4s;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        .slider:before {
+            position: absolute;
+            content: "Daily";
+            height: 55px;
+            width: 80px;
+            left: 5px;
+            bottom: 5px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50px;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(75px);
+            content: "Weekly";
+        }
+        .content {
+            display: none;
+            text-align: center;
+        }
+        .active {
+            display: block;
+        }
+        .form-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container input, .form-container button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .content {
+            display: none;
+            text-align: center;
+        }
+        .content.active {
+            display: block;
+        }
+        .form-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-container input {
+            padding: 10px;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .form-container button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        .content {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .weather-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .hour-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            text-align: center;
+            min-width: 100px;
+        }
+        .forecast {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .forecast-day {
+            background: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .forecast-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 0;
+        }
+        .forecast-item {
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 120px;
+        }
+        .forecast-container {
+            display: flex;
+            overflow-x: auto; 
+            gap: 15px;
+            padding: 10px;
+            justify-content: center;
+        }
+        .forecast-card {
+            min-width: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .forecast-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three boxes per row */
+            gap: 15px;
+            padding: 10px;
+            justify-content: center;
+        }
+        .forecast-card {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .forecast-container {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .forecast-container {
+                grid-template-columns: repeat(1, 1fr); /* One column on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form action="/weather" method="POST">
+                <input type="text" name="city" placeholder="Enter city" required>
+                <button type="submit">Get Weather</button>
+            </form>
+        </div>
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="toggleWeather">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div id="dailyContent" class="content active">
+            <h2>Daily Weather</h2>
+            {% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+{% if weather %}
+    <h2>Weather in {{ weather.city }}</h2>
+    <p>Temperature: {{ weather.temperature }}°C</p>
+    <p>Feels Like: {{ weather.feels_like }}°C</p>
+    <p>Max Temp: {{ weather.max_temp }}°C</p>
+    <p>Min Temp: {{ weather.min_temp }}°C</p>
+    <p>Humidity: {{ weather.humidity }}%</p>
+    <p>Cloudiness: {{ weather.cloudiness }}%</p>
+    <p>Description: {{ weather.description }}</p>
+    <p>Sunrise: {{ weather.sunrise }}</p>
+    <p>Sunset: {{ weather.sunset }}</p>
+{% endif %}
+
+{% if hourly %}
+    <h2>Hourly Forecast</h2>
+    <ul>
+        {% for hour in hourly %}
+            <li>
+                <strong>{{ hour.datetime }}</strong>: 
+                {{ hour.temperature }}°C, {{ hour.description }},
+                Humidity: {{ hour.humidity }}%, 
+                Cloudiness: {{ hour.cloudiness }}%
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+        </div>
+        
+        <div id="weeklyContent" class="content">
+            {% if weather %}
+            <div class="weather-info">
+                <h2>Weather in {{ weather.city }}</h2>
+                <p><strong>Temperature:</strong> {{ weather.temperature }}°C</p>
+                <p><strong>Feels Like:</strong> {{ weather.feels_like }}°C</p>
+                <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
+                <p><strong>Pressure:</strong> {{ weather.pressure }} hPa</p>
+                <p><strong>Cloudiness:</strong> {{ weather.cloudiness }}%</p>
+                <p><strong>Description:</strong> {{ weather.description }}</p>
+                <p><strong>Sunrise:</strong> {{ weather.sunrise }}</p>
+                <p><strong>Sunset:</strong> {{ weather.sunset }}</p>
+            </div>
+            {% endif %}
+
+            {% if daily %}
+    
+            <div class="forecast">
+                <h2>5-Day Forecast</h2>
+                {% for date, forecasts in daily.items() %}
+                <div class="forecast-day">
+                    <h3>{{ date }}</h3>
+                    <div class="forecast-items">
+                        {% for forecast in forecasts %}
+                        <div class="forecast-item">
+                            <p><strong>{{ forecast.time }}</strong></p>
+                            <p><strong>Temp:</strong> {{ forecast.temperature }}°C</p>
+                            <p><strong>Humidity:</strong> {{ forecast.humidity }}%</p>
+                            <p><strong>Cloudiness:</strong> {{ forecast.cloudiness }}%</p>
+                            <p><strong>Description:</strong> {{ forecast.description }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("toggleWeather").addEventListener("change", function() {
+            let dailySection = document.getElementById("dailyContent");
+            let weeklySection = document.getElementById("weeklyContent");
+
+            if (this.checked) {
+                dailySection.classList.remove("active");
+                weeklySection.classList.add("active");
+            } else {
+                weeklySection.classList.remove("active");
+                dailySection.classList.add("active");
+            }
+        });
+    </script>
+</body>
+</html>

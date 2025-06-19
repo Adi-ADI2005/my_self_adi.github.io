@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Tech - Weather Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .switch-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 160px;
+            height: 70px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1470d2;
+            transition: .4s;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        .slider:before {
+            position: absolute;
+            content: "Daily";
+            height: 55px;
+            width: 80px;
+            left: 5px;
+            bottom: 5px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50px;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(75px);
+            content: "Weekly";
+        }
+        .content {
+            display: none;
+            text-align: center;
+        }
+        .active {
+            display: block;
+        }
+        .form-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-container input {
+            padding: 10px;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .form-container button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <!-- No action in the form -->
+            <form id="weatherForm" method="POST">
+                <input type="text" name="city" placeholder="Enter city" required>
+                <button type="submit">Get Weather</button>
+            </form>
+        </div>
+
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="toggleWeather">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div id="dailyContent" class="content active">
+            <h2>Daily Weather</h2>
+            <!-- Daily weather content -->
+            <h2>Daily Weather</h2>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            {% if weather %}
+                <h2>Weather in {{ weather.city }}</h2>
+                <p>Temperature: {{ weather.temperature }}°C</p>
+                <p>Feels Like: {{ weather.feels_like }}°C</p>
+                <p>Max Temp: {{ weather.max_temp }}°C</p>
+                <p>Min Temp: {{ weather.min_temp }}°C</p>
+                <p>Humidity: {{ weather.humidity }}%</p>
+                <p>Cloudiness: {{ weather.cloudiness }}%</p>
+                <p>Description: {{ weather.description }}</p>
+                <p>Sunrise: {{ weather.sunrise }}</p>
+                <p>Sunset: {{ weather.sunset }}</p>
+
+                {% if hourly %}
+                    <div class="hourly-forecast">
+                        <h2>Hourly Forecast</h2>
+                        {% for forecast in hourly %}
+                            <div>
+                                <p><strong>{{ forecast.datetime }}</strong></p>
+                                <p>Temp: {{ forecast.temperature }}°C </p>
+                                <p> Humidity: {{ forecast.humidity }}%</p>
+                                <p>Cloudiness: {{ forecast.cloudiness }}%  </p>
+                                <p>{{ forecast.description }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        </div>
+
+        <div id="weeklyContent" class="content">
+            <h2>Weekly Weather</h2>
+            <!-- Weekly weather content -->
+            {% if daily %}
+            <div class="forecast">
+                <h2>Weekly Forecast</h2>
+                {% for date, forecasts in daily.items() %}
+                    <div class="forecast-day">
+                        <h3>{{ date }}</h3>
+                        <div class="forecast-items">
+                            {% for forecast in forecasts %}
+                                <div class="forecast-item">
+                                    <p><strong>{{ forecast.time }}</strong></p>
+                                    <p><strong>Temp:</strong> {{ forecast.temperature }}°C</p>
+                                    <p><strong>Humidity:</strong> {{ forecast.humidity }}%</p>
+                                    <p><strong>Cloudiness:</strong> {{ forecast.cloudiness }}%</p>
+                                    <p><strong>Description:</strong> {{ forecast.description }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+        </div>
+    </div>
+
+    <script>
+        const toggle = document.getElementById("toggleWeather");
+        const dailySection = document.getElementById("dailyContent");
+        const weeklySection = document.getElementById("weeklyContent");
+        const form = document.getElementById("weatherForm");
+
+        // Set initial form action
+        form.setAttribute("action", "/hourly");
+
+        toggle.addEventListener("change", function () {
+            if (this.checked) {
+                // Weekly selected
+                dailySection.classList.remove("active");
+                weeklySection.classList.add("active");
+                form.setAttribute("action", "/weather");
+            } else {
+                // Daily selected
+                weeklySection.classList.remove("active");
+                dailySection.classList.add("active");
+                form.setAttribute("action", "/hourly");
+            }
+        });
+    </script>
+</body>
+</html>

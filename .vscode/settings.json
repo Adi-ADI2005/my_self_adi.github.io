@@ -1,0 +1,4 @@
+{
+    "javascript.referencesCodeLens.enabled": false,
+    "merge-conflict.codeLens.enabled": true
+}

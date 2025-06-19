@@ -1,0 +1,62 @@
+<!-- templates/chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AgroAI Chatbot</title>
+    <style>
+        body 
+        { font-family: Arial; 
+          background: #eef;
+          margin: 20px; 
+        }
+        #chatbox 
+        { border: 1px solid #aaa;
+          padding: 10px; height: 400px; 
+          overflow-y: scroll;
+          background: white; 
+        }
+        #message 
+        { width: 70%; 
+          padding: 10px;  
+          height: 70;
+        }
+        #send 
+        { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+
+    <center><h2>🌾  AgroAI  🌾 </h2> </center>
+
+<div id="chatbox">
+    <p>Hyyy 🤖! I’m honored to have you as my assistant today 😄. </p>
+</div>
+
+<input type="text" id="message" placeholder="Ask something..." required>
+<button id="send">Send</button>
+<button type="submit"><a href="{{ url_for('home_page') }}">go to home</a></button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#send").click(function() {
+        var msg = $("#message").val();
+        if (msg.trim() !== "") {
+            $("#chatbox").append("<div><b>You:</b> " + msg + "</div>");
+            $.post("/ask", { message: msg }, function(data) {
+                $("#chatbox").append("<div><b>AgroAI:</b> " + data + "</div>");
+                $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+            });
+            $("#message").val('');
+        }
+    });
+
+    $("#message").keypress(function(e) {
+        if (e.which == 13) {
+            $("#send").click();
+        }
+    });
+</script>
+
+</body>
+</html>
