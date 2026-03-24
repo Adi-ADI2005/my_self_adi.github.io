@@ -1,8 +1,11 @@
-<h1 align="center">Hi 👋, I'm Aditya Mishra</h1>
-<h3 align="center">🚀 AI/ML Enthusiast | Data Science Learner | Problem Solver</h3>
+<h1 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi+👋,+I'm+Aditya+Mishra;AI%2FML+Enthusiast;Building+Smart+Solutions+🚀;Open+to+Opportunities&center=true&width=500&height=50">
+</h1>
+
+<h3 align="center">🚀 AI/ML Developer | Data Science | Problem Solver</h3>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=Adi-ADI2005&label=Profile%20views&color=0e75b6&style=flat" alt="profile views" />
+  <img src="https://komarev.com/ghpvc/?username=Adi-ADI2005&label=Profile%20views&color=0e75b6&style=flat" />
 </p>
 
 ---
@@ -10,48 +13,58 @@
 ## 🧠 About Me
 🎓 Pre-final year B.Tech CSE (AI/ML) student  
 💡 Passionate about Machine Learning, Data Science & Automation  
-📊 Love working with data & building real-world solutions  
-🚀 Currently exploring advanced AI & real-world deployment  
+📊 Love building real-world AI systems  
+🚀 Focused on impactful, scalable solutions  
 
 ---
 
 ## ⚙️ Tech Stack
 
-### 💻 Languages
-![Python](https://img.shields.io/badge/Python-blue?style=for-the-badge&logo=python)
-![Java](https://img.shields.io/badge/Java-orange?style=for-the-badge&logo=java)
-![C](https://img.shields.io/badge/C-grey?style=for-the-badge&logo=c)
-![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript)
-
-### 🌐 Web
-![HTML](https://img.shields.io/badge/HTML-red?style=for-the-badge&logo=html5)
-![CSS](https://img.shields.io/badge/CSS-blue?style=for-the-badge&logo=css3)
-
-### 🧰 Tools & Technologies
-![GitHub](https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github)
-![VS Code](https://img.shields.io/badge/VS_Code-blue?style=for-the-badge&logo=visualstudiocode)
-![Jupyter](https://img.shields.io/badge/Jupyter-orange?style=for-the-badge&logo=jupyter)
-![Colab](https://img.shields.io/badge/Google_Colab-yellow?style=for-the-badge&logo=googlecolab)
-
-### 🗄️ Databases
-![MySQL](https://img.shields.io/badge/MySQL-blue?style=for-the-badge&logo=mysql)
-![MongoDB](https://img.shields.io/badge/MongoDB-green?style=for-the-badge&logo=mongodb)
+<p align="center">
+<img src="https://skillicons.dev/icons?i=python,java,c,js,html,css,mysql,mongodb,git,github,vscode" />
+</p>
 
 ---
 
-## 🚀 Projects
+## 🚀 Featured Projects
 
-🔹 **Road Accident Severity Prediction**  
-ML model to predict accident severity using real-world data  
+### 🚗 Road Accident Severity Prediction
+<p align="center">
+  <img src="https://img.freepik.com/free-vector/car-accident-concept-illustration_114360-8203.jpg" width="400"/>
+</p>
 
-🔹 **Farm Tech Hub (ML-based)**  
-Smart farming with weather prediction & yield forecasting  
+🔹 Machine learning model to predict accident severity  
+🔹 Uses driver, vehicle & environmental data  
 
-🔹 **AI-Based E-Voting System**  
-Secure voting system using Flask, MySQL & OpenCV  
+---
 
-🔹 **Interactive E-Book Platform**  
-Full-stack platform with AI-powered text-to-speech  
+### 🌾 Farm Tech Hub (Smart Farming)
+<p align="center">
+  <img src="https://img.freepik.com/free-vector/smart-farming-concept_23-2148591456.jpg" width="400"/>
+</p>
+
+🔹 AI-powered farming system  
+🔹 Weather prediction & crop yield forecasting  
+
+---
+
+### 🗳️ AI-Based E-Voting System
+<p align="center">
+  <img src="https://img.freepik.com/free-vector/online-voting-concept_23-2148601807.jpg" width="400"/>
+</p>
+
+🔹 Secure voting system using Flask & OpenCV  
+🔹 Role-based dashboards (Admin, Candidate, Voter)  
+
+---
+
+### 📚 Interactive E-Book Platform
+<p align="center">
+  <img src="https://img.freepik.com/free-vector/ebook-concept-illustration_114360-7664.jpg" width="400"/>
+</p>
+
+🔹 Full-stack platform with AI text-to-speech  
+🔹 Features bookmarks & highlights  
 
 ---
 
@@ -68,18 +81,18 @@ Full-stack platform with AI-powered text-to-speech
 
 ---
 
-## 🏆 Achievements
-🥇 Gold Badge in Python (HackerRank)  
-📜 NPTEL Certification (Human Interface Design)  
-💻 Web Development (Internshala)  
-🐍 Python with SQL Certified  
+## 🐍 Contribution Snake Animation
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Adi-ADI2005/Adi-ADI2005/output/github-contribution-grid-snake.svg" />
+</p>
 
 ---
 
-## 🌱 Currently Learning
-📌 Advanced Machine Learning  
-📌 Data Visualization  
-📌 AI Deployment  
+## 🏆 Achievements
+🥇 Gold Badge in Python (HackerRank)  
+📜 NPTEL Certified  
+💻 Web Development (Internshala)  
 
 ---
 
@@ -100,8 +113,8 @@ Full-stack platform with AI-powered text-to-speech
 ---
 
 ## ⚡ Fun Fact
-💡 I love turning ideas into real-world AI projects 🚀  
+💡 I turn ideas into real-world AI products 🚀  
 
 ---
 
-⭐ *Open to internships, collaborations & exciting opportunities in AI/ML*
+⭐ **Open to internships, collaborations & AI/ML opportunities**
