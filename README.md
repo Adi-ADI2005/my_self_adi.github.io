@@ -1,32 +1,36 @@
-<!-- Banner -->
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:4facfe,100:00f2fe&height=200&section=header&text=Aditya%20Mishra&fontSize=40&fontColor=ffffff" />
-</p>
+<!-- ========================= -->
+<!--        HEADER             -->
+<!-- ========================= -->
 
-<!-- Typing Animation -->
+<h1 align="center">Hi 👋, I'm Aditya Mishra</h1>
+<h3 align="center">🚀 Aspiring AI Engineer | ML • Data Science • Python</h3>
+
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?color=00F7FF&size=24&center=true&vCenter=true&width=600&lines=AI+%26+ML+Student;Machine+Learning+Enthusiast;Aspiring+AI+Engineer;Python+Developer;Open+to+Opportunities" />
+  <img src="https://readme-typing-svg.herokuapp.com?color=00F7FF&center=true&vCenter=true&lines=AI+%26+ML+Enthusiast;Machine+Learning+Developer;Data+Science+Learner;Full+Stack+Developer" />
 </p>
 
 ---
 
-# 👋 Hi, I'm Aditya Mishra  
-
-🎓 **Pre-Final Year B.Tech CSE (AI & ML) Student**  
-🤖 **Machine Learning • Data Science • Python**  
-🚀 **Aspiring AI Engineer**  
-
----
+<!-- ========================= -->
+<!--        ABOUT ME           -->
+<!-- ========================= -->
 
 ## 🧑‍💻 About Me  
 
-- 🎓 B.Tech CSE (AI & ML) @ GIET University  
-- 💡 Passionate about **AI, ML & Data-Driven Solutions**  
-- 🧠 Love building **real-world intelligent systems**  
-- 📊 Skilled in **ML, Data Analysis & Model Evaluation**  
-- 🎯 Currently looking for **Internships & AI/ML Opportunities**  
+🎓 Pre-Final Year **B.Tech CSE (AI & ML)** Student at **GIET University**  
+🤖 Passionate about **Artificial Intelligence & Data-Driven Solutions**  
+💡 Love building **real-world AI products & automation systems**  
+
+- 🔭 Currently working on **AI/ML & Web Development Projects**  
+- 🌱 Learning **Deep Learning & Advanced ML**  
+- 🎯 Goal: Become a **Skilled AI Engineer**  
+- ⚡ Fun Fact: *I turn ideas into real-world AI products 🚀*  
 
 ---
+
+<!-- ========================= -->
+<!--        TECH STACK         -->
+<!-- ========================= -->
 
 ## 🛠️ Tech Stack  
 
@@ -42,82 +46,66 @@
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-### ⚙️ Backend & Database  
+### 🔧 Backend & Databases  
 ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask)
 ![MySQL](https://img.shields.io/badge/MySQL-00758F?style=for-the-badge&logo=mysql&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white)
 
 ### 🤖 AI / ML  
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-blue?style=for-the-badge)
-![Deep Learning](https://img.shields.io/badge/Deep%20Learning-red?style=for-the-badge)
-![Data Science](https://img.shields.io/badge/Data%20Science-purple?style=for-the-badge)
-![OpenCV](https://img.shields.io/badge/OpenCV-green?style=for-the-badge)
+![Machine Learning](https://img.shields.io/badge/Machine_Learning-102230?style=for-the-badge)
+![Deep Learning](https://img.shields.io/badge/Deep_Learning-0A192F?style=for-the-badge)
+![Data Science](https://img.shields.io/badge/Data_Science-4B8BBE?style=for-the-badge)
+![OpenCV](https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=opencv)
 
 ---
 
-## 🚀 Projects  
-
-🔹 AI Medical Report Analysis & Triage Assistant  
-🔹 Vehicle Detection using YOLO & Roboflow API  
-🔹 Blog & Video Management Web App (React + Flask)  
-
----
+<!-- ========================= -->
+<!--        STATS              -->
+<!-- ========================= -->
 
 ## 📊 GitHub Stats  
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=tokyonight" />
-</p>
-
-<p align="center">
+  <br/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME&theme=tokyonight" />
+  <br/>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=tokyonight" />
 </p>
 
 ---
 
-## 🔥 Streak Stats  
+<!-- ========================= -->
+<!--        CONNECT            -->
+<!-- ========================= -->
 
-<p align="center">
-  <img src="https://streak-stats.demolab.com/?user=YOUR_USERNAME&theme=tokyonight" />
-</p>
-
----
-
-## 🌐 Connect With Me  
+## 🤝 Connect With Me  
 
 <p align="center">
   <a href="https://linkedin.com/in/YOUR_LINK">
-    <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin" />
+    <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin">
   </a>
-  <a href="mailto:YOUR_EMAIL">
-    <img src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail" />
+  <a href="mailto:YOUR_EMAIL@gmail.com">
+    <img src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail">
+  </a>
+  <a href="https://github.com/YOUR_USERNAME">
+    <img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github">
   </a>
 </p>
 
 ---
 
-## 👀 Profile Views  
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=YOUR_USERNAME&color=blue&style=for-the-badge" />
-</p>
-
----
-
-## ⚡ Fun Fact  
-
-💡 *I turn ideas into real-world AI products* 🚀  
-
----
+<!-- ========================= -->
+<!--        FOOTER             -->
+<!-- ========================= -->
 
 ## ⭐ Opportunities  
 
-✨ Open to **Internships, Collaborations & AI/ML Roles**  
+✨ Open to **Internships | Collaborations | AI/ML Projects**  
 
 ---
 
-<!-- Footer Wave -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00f2fe,100:4facfe&height=120&section=footer"/>
+  🔥 <b>"Code. Learn. Build. Repeat."</b> 🔥
 </p>
