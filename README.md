@@ -61,7 +61,7 @@
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117" />
 </p>
-
+---
 # 🧠 Mindset  
 
 <p align="center">
