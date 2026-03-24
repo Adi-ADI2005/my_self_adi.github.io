@@ -62,9 +62,6 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117" />
 </p>
 
----
----
-
 # 🧠 Mindset  
 
 <p align="center">
@@ -91,7 +88,7 @@
 </p>
 
 ---
----
+
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00F7FF,100:0A192F&height=120&section=footer"/>
